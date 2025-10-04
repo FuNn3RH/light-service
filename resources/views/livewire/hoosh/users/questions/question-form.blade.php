@@ -33,6 +33,12 @@
                         class="img-fluid rounded shadow-sm">
                 </div>
             @endif
+
+            @if ($question->voice)
+                <div class="mb-3">
+                    <audio src="{{ asset('storage/' . $question->voice) }}" controls></audio>
+                </div>
+            @endif
             <p>
                 {{ $question->content }}
             </p>

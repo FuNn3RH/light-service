@@ -34,6 +34,28 @@
                     @enderror
                 </div>
 
+                @isset($voice)
+                    <div class="mb-3">
+                        <audio src="{{ $voice->temporaryUrl() }}" controls></audio>
+                    </div>
+                @endisset
+
+                @isset($savedVoicePath)
+                    @unless ($voice)
+                        <div class="mb-3">
+                            <audio src="{{ asset('storage/' . $savedVoicePath) }}" controls></audio>
+                        </div>
+                    @endunless
+                @endisset
+
+                <div class="mb-3">
+                    <label for="voice-input" class="form-label">ویس</label>
+                    <input class="form-control" type="file" wire:model="voice" accept="audio/*" id="voice-input">
+                    @error('voice')
+                        <span class="text-danger small">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <!-- نمایش همراه با سوال اصلی -->
                 <div class="mb-3">
                     <div class="form-check form-switch">

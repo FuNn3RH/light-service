@@ -58,7 +58,7 @@ class MainQuestionForm extends Component
         $question->user_id = Auth::guard('hoosh')->id();
 
         if ($this->image) {
-            $imagePath = $this->image->store('questions', 'public');
+            $imagePath = $this->image->store('main-questions/images', 'public');
             $question->image = $imagePath;
         }
 
@@ -84,7 +84,7 @@ class MainQuestionForm extends Component
                 Storage::disk('public')->delete($question->image);
             }
 
-            $imagePath = $this->image->store('questions', 'public');
+            $imagePath = $this->image->store('main-questions/images', 'public');
             $question->image = $imagePath;
         }
 

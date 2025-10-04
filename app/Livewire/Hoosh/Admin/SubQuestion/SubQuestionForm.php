@@ -28,7 +28,9 @@ class SubQuestionForm extends Component
     public $type = 'text';
     public $options = [];
     public $image;
+    public $voice;
     public $savedImagePath;
+    public $savedVoicePath;
 
     public bool $isEdit = false;
 
@@ -51,6 +53,7 @@ class SubQuestionForm extends Component
                 $this->type = $this->subQuestion->type;
                 $this->options = $this->subQuestion->options ?? [];
                 $this->savedImagePath = $this->subQuestion->image;
+                $this->savedVoicePath = $this->subQuestion->voice;
                 $this->isEdit = true;
             } else {
                 session()->flash('message', ['type' => 'danger', 'text' => ['زیر سوال یافت نشد!']]);
@@ -73,7 +76,11 @@ class SubQuestionForm extends Component
         $subQuestion->options = $this->options;
 
         if ($this->image) {
-            $subQuestion->image = $this->image->store('hoosh/sub-questions', 'public');
+            $subQuestion->image = $this->image->store('hoosh/sub-questions/images', 'public');
+        }
+
+        if ($this->voice) {
+            $subQuestion->voice = $this->voice->store('hoosh/sub-questions/voices', 'public');
         }
 
         $subQuestion->main_question_id = $this->mainQuestion->id;
@@ -109,9 +116,21 @@ class SubQuestionForm extends Component
                 Storage::disk('public')->delete($subQuestion->image);
             }
 
-            $subQuestion->image = $this->image->store('hoosh/sub-questions', 'public');
-            $subQuestion->save();
+            $subQuestion->image = $this->image->store('hoosh/sub-questions/images', 'public');
         }
+
+        if ($this->voice) {
+
+            if ($subQuestion->voice) {
+                Storage::disk('public')->delete($subQuestion->voice);
+            }
+
+
+            $subQuestion->voice = $this->voice->store('hoosh/sub-questions/voices', 'public');
+        }
+
+        $subQuestion->save();
+
 
         session()->flash('message', ['type' => 'success', 'text' => ['زیر سوال با موفقیت ویرایش شد!']]);
         $this->redirect(route('hoosh.admin.questions.sub-questions.index', $this->mainQuestion), true);
@@ -129,6 +148,7 @@ class SubQuestionForm extends Component
             'options.*' => 'string',
             'image' => 'nullable|image|max:5048',
             'showType' => 'boolean',
+            'voice' => ['required', 'file', 'mimetypes:audio/mpeg,audio/wav,audio/ogg'],
         ];
     }
 
