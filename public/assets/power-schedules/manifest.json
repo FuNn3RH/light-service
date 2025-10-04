@@ -1,0 +1,19 @@
+{
+    "name": "برنامه خاموشی",
+    "short_name": "برنامه خاموشی",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#d9c6de4a",
+    "icons": [
+        {
+            "src": "./img/web-icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./img/web-icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+body {
+    font-family: 'Dana', Arial, Helvetica, sans-serif;
+    background-color: #f7f9fc;
+    padding: 1rem;
+}
+
+@font-face {
+    font-family: 'Dana';
+    src: url('../fonts/Dana-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dana-Bold';
+    src: url('../fonts/Dana-Bold.woff2') format('woff2');
+    font-display: swap;
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity 5s ease;
+}
+
+.fade.show {
+    opacity: 1;
+}
