@@ -9,6 +9,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Share\Share as ShareModel;
 
 class Share extends Component
@@ -73,6 +74,13 @@ class Share extends Component
 
         File::delete(public_path($share->src));
         $share->delete();
+    }
+
+    public function downloadFile($id)
+    {
+        $share = ShareModel::findOrFail($id);
+
+        return Storage::download($share->src, $share->name);
     }
 
     #[Title('اشتراک')]

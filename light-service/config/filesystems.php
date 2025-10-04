@@ -62,7 +62,7 @@ return [
 
         'public_path' => [
             'driver' => 'local',
-            'root' => public_path(), // this points directly to /public
+            'root' => public_path(),
         ],
 
     ],
@@ -79,7 +79,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        base_path('../public_html/storage') => storage_path('app/public'),
     ],
 
 ];

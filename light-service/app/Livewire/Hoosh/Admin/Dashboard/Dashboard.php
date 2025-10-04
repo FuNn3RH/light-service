@@ -11,6 +11,7 @@ use Livewire\Attributes\Layout;
 
 class Dashboard extends Component
 {
+    #[Layout('داشبورد')]
     #[Layout('components.hoosh.layouts.app')]
     public function render()
     {

@@ -58,6 +58,7 @@ class ReviewPage extends Component
         ];
     }
 
+    #[Layout('بازخورد')]
     #[Layout('components.hoosh.layouts.app')]
     public function render()
     {

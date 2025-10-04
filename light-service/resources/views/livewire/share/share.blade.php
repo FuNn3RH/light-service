@@ -53,9 +53,11 @@
                                     <p class="card-text"><small>{{ $file['created_at'] }}</small></p>
 
                                     <span class="d-flex justify-content-around align-items-center gap-1 mt-auto">
-                                        <a href="{{ asset($file['src'], false) }}"
-                                            download="{{ htmlspecialchars($file['name']) }}"
-                                            class="btn btn-sm btn-success flex-grow-1">Download</a>
+                                        <button wire:click="download({{ $file['id'] }})"
+                                            class="btn btn-sm btn-success flex-grow-1">
+                                            Download
+                                        </button>
+
                                         <button wire:click="delete({{ $file['id'] }})"
                                             class="btn btn-sm btn-danger flex-grow-2"
                                             wire:confirm="Are you sure you want to delete this file?">Delete</button>
