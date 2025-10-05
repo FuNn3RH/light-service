@@ -8,10 +8,11 @@ use Livewire\Attributes\On;
 use App\Models\Hoosh\Answer;
 use App\Models\Hoosh\Question;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 
 class Dashboard extends Component
 {
-    #[Layout('داشبورد')]
+    #[Title('داشبورد')]
     #[Layout('components.hoosh.layouts.app')]
     public function render()
     {

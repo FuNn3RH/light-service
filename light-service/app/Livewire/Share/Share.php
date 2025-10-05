@@ -31,7 +31,7 @@ class Share extends Component
         $this->validateOnly('file');
         if ($this->file) {
             $filePath = uniqid('share_') . '_' . $this->file->getClientOriginalName();
-            $this->file->storeAs('shares', $filePath, 'public_path');
+            $this->file->storeAs('shares', $filePath, 'public');
 
             ShareModel::create([
                 'src' => 'shares/' . $filePath,
@@ -76,11 +76,11 @@ class Share extends Component
         $share->delete();
     }
 
-    public function downloadFile($id)
+    public function download($id)
     {
         $share = ShareModel::findOrFail($id);
 
-        return Storage::download($share->src, $share->name);
+        return Storage::disk('public')->download($share->src, $share->name);
     }
 
     #[Title('اشتراک')]
