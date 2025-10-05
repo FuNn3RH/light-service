@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Hoosh\BackupController;
 use App\Livewire\Share\Share;
 use App\Livewire\Hoosh\Auth\Login;
@@ -23,25 +24,28 @@ use App\Http\Controllers\PowerSchedule\ServiceWorkerController;
 use App\Livewire\Hoosh\Admin\Dashboard\Dashboard as AdminDashboard;
 use App\Livewire\Hoosh\Admin\UserMainQuestion\UserMainQuestionPage;
 use App\Livewire\Hoosh\Admin\SubQuestion\MainQuestionPage as SubQuestionMainQuestionPage;
+use Illuminate\Support\Facades\Auth;
 
-Route::prefix('share')->group(function () {
-    Route::get('/', Share::class)->name('share.index');
-});
+Route::middleware('main.auth')->group(function () {
+    Route::prefix('share')->group(function () {
+        Route::get('/', Share::class)->name('share.index');
+    });
 
-Route::prefix('power-schedules')->group(function () {
-    Route::get('/', [PowerController::class, 'index'])->name('power-schedules.index');
-    Route::get('/reports', [PowerController::class, 'getReport'])->name('power-schedules.get.reports');
-    Route::get('/sw', [ServiceWorkerController::class, 'index'])->name('power-schedules.sw');
-    Route::get('/offline', [ServiceWorkerController::class, 'offline'])->name('power-schedules.offline');
-    Route::get('/power-schedules/offline-data', [ServiceWorkerController::class, 'offlineData']);
-});
+    Route::prefix('power-schedules')->group(function () {
+        Route::get('/', [PowerController::class, 'index'])->name('power-schedules.index');
+        Route::get('/reports', [PowerController::class, 'getReport'])->name('power-schedules.get.reports');
+        Route::get('/sw', [ServiceWorkerController::class, 'index'])->name('power-schedules.sw');
+        Route::get('/offline', [ServiceWorkerController::class, 'offline'])->name('power-schedules.offline');
+        Route::get('/power-schedules/offline-data', [ServiceWorkerController::class, 'offlineData']);
+    });
 
-Route::prefix('rust')->group(function () {
-    // Route::get('/', RustController::class)->name('rust.index');
-    Route::get('/', [RustController::class, 'treasure'])->name('rust.treasure');
-    Route::post('/', [RustController::class, 'findTreasure'])->name('rust.treasure.find');
-    Route::get('/logs', [RustController::class, 'logs'])->name('rust.treasure.logs');
-    Route::get('/map', [RustController::class, 'map'])->name('rust.treasure.map');
+    Route::prefix('rust')->group(function () {
+        // Route::get('/', RustController::class)->name('rust.index');
+        Route::get('/', [RustController::class, 'treasure'])->name('rust.treasure');
+        Route::post('/', [RustController::class, 'findTreasure'])->name('rust.treasure.find');
+        Route::get('/logs', [RustController::class, 'logs'])->name('rust.treasure.logs');
+        Route::get('/map', [RustController::class, 'map'])->name('rust.treasure.map');
+    });
 });
 
 Route::prefix('hoosh')->group(function () {
@@ -83,4 +87,11 @@ Route::prefix('hoosh')->group(function () {
     });
 
     Route::get('/backup', BackupController::class);
+});
+
+Route::get('/login', [AuthController::class, 'index'])->name('login.index');
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.login');
+
+Route::prefix('company')->group(function () {
+    Route::view('/', 'companies.shimiteb');
 });

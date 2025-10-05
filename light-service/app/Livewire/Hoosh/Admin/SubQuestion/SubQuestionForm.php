@@ -148,7 +148,7 @@ class SubQuestionForm extends Component
             'options.*' => 'string',
             'image' => 'nullable|image|max:5048',
             'showType' => 'boolean',
-            'voice' => ['required', 'file', 'mimetypes:audio/mpeg,audio/wav,audio/ogg'],
+            'voice' => ['nullable', 'file', 'mimetypes:audio/mpeg,audio/wav,audio/ogg'],
         ];
     }
 

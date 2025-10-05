@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'hoosh_users',
         ],
+        'main' => [
+            'driver' => 'session',
+            'provider' => 'main_users',
+        ]
     ],
 
     /*
@@ -72,6 +76,11 @@ return [
         'hoosh_users' => [
             'driver' => 'eloquent',
             'model' => App\Models\Hoosh\User::class,
+        ],
+
+        'main_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MainUser::class,
         ],
 
         // 'users' => [
