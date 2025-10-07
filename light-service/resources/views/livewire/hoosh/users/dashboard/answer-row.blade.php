@@ -7,7 +7,7 @@
         <span class="badge {{ $answer->is_reviewed->class() }}">{{ $answer->is_reviewed->label() }}</span>
     </td>
     <td class="text-break">
-        {{ $answer->review ? str($answer->review?->feedback)->limit(30) : '-' }}
+        {{ $answer->review?->feedback ? str($answer->review?->feedback)->limit(30) : '-' }}
     </td>
     <td>
         {{ $answer->review?->created_at ? JalaliDate($answer->review?->created_at, '%A, %d %B %Y - H:i') : '-' }}

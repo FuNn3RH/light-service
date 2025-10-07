@@ -7,9 +7,8 @@
     <title>{{ $title ?? 'Page Title' }}</title>
     <link rel="stylesheet" href="{{ vAsset('assets/hoosh/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ vAsset('assets/hoosh/css/style.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ vAsset('assets/hoosh/img/web-icon.png') }}">
-    <link rel="manifest" href="<?php echo asset('manifest.json'); ?>">
-
+    <link rel="icon" href="{{ vAsset('assets/hoosh/img/web-icon.png') }}">
+    <link rel="manifest" href="{{ vAsset('assets/hoosh/manifest.json') }}">
 
     @livewireStyles
 </head>

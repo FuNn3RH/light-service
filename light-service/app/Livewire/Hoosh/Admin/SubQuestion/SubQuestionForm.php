@@ -92,6 +92,7 @@ class SubQuestionForm extends Component
 
     public function update($subQuestionId)
     {
+
         $this->validate();
 
         $subQuestion = Question::find($subQuestionId);

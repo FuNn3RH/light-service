@@ -19,13 +19,13 @@
                 </p>
             @endif
 
-            @if ($mainQuestion->published_at < date('Y-m-d H:i:s'))
+            @if ($mainQuestion->published_at < now()->timestamp)
                 <a href="{{ route('hoosh.users.questions', $mainQuestion->id) }}"
                     class="btn btn-outline-primary mt-auto">دیدن
                     سوال‌ها</a>
             @else
                 <a wire:navigate class="btn btn-secondary mt-auto">
-                    <span>{{ JalaliDate($mainQuestion->published_at, '%d %B %Y H:i:s') }}</span>
+                    <span>{{ jalaliTamp($mainQuestion->published_at) }}</span>
                 </a>
             @endif
         </div>

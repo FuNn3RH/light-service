@@ -51,7 +51,9 @@ class QuestionForm extends Component
     public function submit()
     {
 
-        $this->answer_text = $this->question->type === 'image' ? 'عکس ارسال شده' : '';
+        if ($this->question->type === 'image') {
+            $this->answer_text = 'عکس ارسال شده';
+        }
 
         $this->validate();
 

@@ -57,6 +57,9 @@
                         @error('image')
                             <span class="text-sm text-danger">{{ $message }}</span>
                         @enderror
+                        <div wire:loading wire:target="image" class="text-info mt-2">
+                            در حال آپلود تصویر، لطفاً صبر کنید...
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -73,7 +76,8 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">{{ $isEdit ? 'ویرایش' : 'ایجاد' }} سوال</button>
+                    <button wire:loading.attr="disabled" wire:target="image" type="submit"
+                        class="btn btn-primary">{{ $isEdit ? 'ویرایش' : 'ایجاد' }} سوال</button>
                     <a wire:navigate href="{{ route('hoosh.admin.questions.index') }}"
                         class="btn btn-secondary ms-2">انصراف</a>
                 </form>

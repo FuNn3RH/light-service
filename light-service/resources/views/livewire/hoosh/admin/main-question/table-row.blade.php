@@ -7,10 +7,10 @@
     <td>{{ empty($mainQuestion->image) ? '❌' : '✅' }}</td>
     <td>{{ JalaliDate($mainQuestion->created_at, '%A, %d %B %Y') }}</td>
     <td>
-        @if ($mainQuestion->published_at->timestamp < now()->timestamp)
+        @if ($mainQuestion->published_at < now()->timestamp)
             <span class="badge bg-success">منتشر شده</span>
         @else
-            {{ JalaliDate($mainQuestion->published_at, '%d %B %Y H:i:s') }}
+            {{ jalaliTamp($mainQuestion->published_at) }}
         @endif
     </td>
     <td>

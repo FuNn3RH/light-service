@@ -29,11 +29,14 @@ function createFormInputs() {
         return
     }
 
+    const optionInputs = document.querySelectorAll('.option-input')
+    const index = optionInputs.length;
+
     chooseTypeWarpper.insertAdjacentHTML('beforeend',
         `
-        <div class="my-3">
+        <div class="my-3 option-input">
           <label class="form-label">عنوان گزینه</label>
-          <input type="text" name="options[]" class="form-control" >
+          <input type="text" wire:model="options.${index}" class="form-control" >
         </div>
         `
     )

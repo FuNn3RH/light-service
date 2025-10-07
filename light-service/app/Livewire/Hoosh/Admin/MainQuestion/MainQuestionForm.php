@@ -24,7 +24,7 @@ class MainQuestionForm extends Component
     public $published_at;
     public $image;
     public $savedImagePath;
-    public $level = 'آسان';
+    public $level = QuestionLevel::EASY;
     public $levels = [];
 
     public function mount($question = null)

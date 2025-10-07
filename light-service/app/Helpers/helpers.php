@@ -35,6 +35,11 @@ function JalaliDate($date, $format = '%Y %B %d')
     return $jalaliDate->format($format);
 }
 
+function jalaliTamp($timestamp, $format = '%d %B %Y H:i:s')
+{
+    return Jalalian::forge($timestamp)->format($format);
+}
+
 function sortDataByDay($data)
 {
     $weekDays = [];

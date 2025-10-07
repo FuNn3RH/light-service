@@ -11,7 +11,10 @@ class AnswersTable extends Component
 
     public function mount()
     {
-        $this->answers = Answer::with('question', 'review')->where('user_id', auth()->guard('hoosh')->id())->get();
+        $this->answers = Answer::with('question', 'review')
+            ->where('user_id', auth()->guard('hoosh')->id())
+            ->orderByDesc('created_at')
+            ->get();
     }
 
     public function render()

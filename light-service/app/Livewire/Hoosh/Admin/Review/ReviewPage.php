@@ -9,6 +9,7 @@ use App\Models\Hoosh\Question;
 use App\Models\Hoosh\Review;
 use Livewire\Attributes\Layout;
 use App\Rules\QuestionScoreRule;
+use Livewire\Attributes\Title;
 
 class ReviewPage extends Component
 {
@@ -58,7 +59,7 @@ class ReviewPage extends Component
         ];
     }
 
-    #[Layout('بازخورد')]
+    #[Title('بازخورد')]
     #[Layout('components.hoosh.layouts.app')]
     public function render()
     {

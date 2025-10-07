@@ -86,6 +86,9 @@
                                 @error('images')
                                     <span class="text-danger small">{{ $message }}</span>
                                 @enderror
+                                <div wire:loading wire:target="images" class="text-info mt-2">
+                                    در حال آپلود تصویر، لطفاً صبر کنید...
+                                </div>
                             </div>
                         @break
 
@@ -101,7 +104,8 @@
 
                 </div>
 
-                <button wire:confirm='آیا مطمئن به ثبت پاسخ هستید؟' class="btn btn-success">ثبت پاسخ</button>
+                <button wire:loading.attr="disabled" wire:target="images" wire:confirm='آیا مطمئن به ثبت پاسخ هستید؟'
+                    class="btn btn-success">ثبت پاسخ</button>
 
                 <a href="{{ route('hoosh.users.questions', $mainQuestion->id) }}"
                     onclick="return confirm('آیا مطمئن به بازگشت هستید؟')" class="btn btn-danger">بازگشت</a>

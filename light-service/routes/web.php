@@ -86,6 +86,12 @@ Route::prefix('hoosh')->group(function () {
         });
     });
 
+    Route::get('/sw', function () {
+        return response()->file(public_path('assets/hoosh/js/sw.js'), [
+            'Content-Type' => 'application/javascript',
+        ]);
+    });
+
     Route::get('/backup', BackupController::class);
 });
 
@@ -93,5 +99,6 @@ Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.login');
 
 Route::prefix('company')->group(function () {
-    Route::view('/', 'companies.shimiteb');
+    Route::redirect('/', '/company/shimiteb');
+    Route::view('/shimiteb', 'companies.shimiteb');
 });

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/companies/libs/swiper/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/companies/css/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/companies/css/style.css') }}">
+    <link rel="icon" href="{{ asset('assets/companies/img/icons/icon.png') }}">
 
 </head>
 
@@ -37,7 +38,7 @@
         </div>
 
         <div class="card">
-            <section class="profile-img" style="background-image: url('assets/companies/img/main-img.webp')">
+            <section class="profile-img">
 
                 <div class="info">
                     <div class="name-wrapper">
@@ -161,9 +162,15 @@
         const modal = document.querySelector('#myModal');
 
         openBtn.onclick = () => modal.style.display = 'flex';
-        window.onclick = e => {
-            if (e.target === modal) modal.style.display = 'none';
-        };
+
+        function closeModal(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('click', closeModal);
+        window.addEventListener('touchstart', closeModal);
     </script>
 
     <script src="{{ asset('assets/companies/libs/swiper/swiper.js') }}"></script>

@@ -36,7 +36,6 @@ class MainQuestion extends Model
     {
         return [
             'level' => QuestionLevel::class,
-            'published_at' => 'datetime'
         ];
     }
 

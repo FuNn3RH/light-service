@@ -25,13 +25,15 @@
                     @endunless
                 @endisset
 
-                <!-- انتخاب فایل عکس -->
                 <div class="mb-3">
                     <label for="formFile" class="form-label">عکس سوال</label>
                     <input class="form-control" type="file" wire:model="image" accept="image/*" id="formFile">
                     @error('image')
                         <span class="text-danger small">{{ $message }}</span>
                     @enderror
+                    <div wire:loading wire:target="image" class="text-info mt-2">
+                        در حال آپلود تصویر، لطفاً صبر کنید...
+                    </div>
                 </div>
 
                 @isset($voice)
@@ -54,6 +56,9 @@
                     @error('voice')
                         <span class="text-danger small">{{ $message }}</span>
                     @enderror
+                    <div wire:loading wire:target="voice" class="text-info mt-2">
+                        در حال آپلود ویس لطفاً صبر کنید...
+                    </div>
                 </div>
 
                 <!-- نمایش همراه با سوال اصلی -->
@@ -121,13 +126,11 @@
                         onclick="createFormInputs()">ایجاد
                         گزینه</button>
 
-
                     @if ($type === 'choose')
-                        @forelse ($options as $option)
+                        @forelse ($options as $index => $option)
                             <div class="mb-3">
                                 <label class="form-label">عنوان گزینه</label>
-                                <input type="text" wire:model="options" class="form-control"
-                                    value="{{ $option }}">
+                                <input type="text" wire:model="options.{{ $index }}" class="form-control">
                             </div>
                         @empty
                         @endforelse
@@ -140,7 +143,8 @@
 
                 <!-- دکمه‌ها -->
                 <div class="mt-4 d-flex flex-wrap gap-2">
-                    <button type="submit" class="btn btn-primary">{{ $isEdit ? 'ویرایش' : 'ایجاد' }} سوال</button>
+                    <button wire:loading.attr="disabled" wire:target="image,voice" type="submit"
+                        class="btn btn-primary">{{ $isEdit ? 'ویرایش' : 'ایجاد' }} سوال</button>
                     <a href="{{ route('hoosh.admin.questions.sub-questions.index', $mainQuestion->id) }}"
                         class="btn btn-secondary">انصراف</a>
                 </div>
