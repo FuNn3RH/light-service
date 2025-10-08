@@ -10,7 +10,7 @@
                 </h2>
                 <div class="accordion-collapse collapse show">
                     <div class="accordion-body">
-                        <p class="fs-5">{{ $answer->mainQuestion->content }}</p>
+                        <p class="fs-5">{!! nl2br(e($answer->mainQuestion->content)) !!}</p>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@
                     </div>
                 @endif
 
-                <p class="fs-5">{{ $mainQuestion->content }}</p>
+                <p class="fs-5">{!! nl2br(e($mainQuestion->content)) !!}</p>
             </div>
         </div>
     </div>

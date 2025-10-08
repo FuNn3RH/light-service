@@ -17,6 +17,7 @@ class QuestionCards extends Component
             },
             'subQuestions'
         ])->has('subQuestions')
+            ->orderByDesc('created_at')
             ->get();
     }
 

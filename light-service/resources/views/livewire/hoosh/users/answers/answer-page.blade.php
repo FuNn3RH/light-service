@@ -17,7 +17,7 @@
                                         alt="{{ $answer->mainQuestion->title }}">
                                 </div>
                             @endif
-                            <p class="fs-5">{{ $answer->mainQuestion->main_content }}</p>
+                            <p class="fs-5">{!! nl2br(e($answer->mainQuestion->main_content)) !!}</p>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
 
                 <div>
                     <h5>سوال:</h5>
-                    <p>{{ $answer->question->content }}</p>
+                    <p>{!! nl2br(e($answer->question->content)) !!}</p>
                 </div>
 
                 <div>
@@ -39,7 +39,7 @@
                     <div>
                         <h5>باز خورد :</h5>
                         <p>امتیاز:{{ $answer->review->score }}</p>
-                        <p>{{ $answer->review->feedback }}</p>
+                        <p>{!! nl2br(e($answer->review->feedback)) !!}</p>
                     </div>
                 @endif
                 <div class="mt-3">

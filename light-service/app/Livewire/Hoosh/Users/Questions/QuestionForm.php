@@ -87,10 +87,12 @@ class QuestionForm extends Component
 
     public function rules(): array
     {
+        $isImageQuestion = $this->question->type === 'image';
+
         return [
             'answer_text' => 'required|min:3|max:2000',
-            'images' => 'nullable|array',
-            'images.*' => 'required|image'
+            'images' => [$isImageQuestion ? 'required' : 'nullable', 'array'],
+            'images.*' => [$isImageQuestion ? 'required' : 'nullable', 'image'],
         ];
     }
 

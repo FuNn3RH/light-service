@@ -29,14 +29,14 @@ class QuestionScoreRule implements ValidationRule
 
             $score = $answer->question->score;
 
-            if ($value < 1 || $value > $score) {
-                $fail("امتیاز :attribute باید بین 1 و {$score} باشد.");
+            if ($value < 0 || $value > $score) {
+                $fail("امتیاز :attribute باید بین 0 و {$score} باشد.");
             }
             return;
         }
 
-        if ($this->questionScore > 0 && ($value < 1 || $value > $this->questionScore)) {
-            $fail("امتیاز :attribute باید بین 1 و {$this->questionScore} باشد.");
+        if ($this->questionScore > 0 && ($value < 0 || $value > $this->questionScore)) {
+            $fail("امتیاز :attribute باید بین 0 و {$this->questionScore} باشد.");
         }
     }
 }

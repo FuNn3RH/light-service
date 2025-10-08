@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\AnswerController;
-use App\Http\Controllers\Api\QuestionController;
-use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Hoosh\Api\AnswerController;
+use App\Http\Controllers\Hoosh\Api\QuestionController;
+use App\Http\Controllers\Hoosh\Api\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

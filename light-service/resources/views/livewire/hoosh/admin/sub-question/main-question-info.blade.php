@@ -5,7 +5,7 @@
         </h2>
         <div class="accordion-collapse collapse show">
             <div class="accordion-body">
-                <p class="fs-5">{{ $mainQuestion['content'] }}</p>
+                <p class="fs-5">{{ nl2br(e($mainQuestion->content)) }}</p>
                 <div class="text-center mx-auto">
                     <img src="{{ asset('storage/' . $mainQuestion['image']) }}"
                         class="img-fluid rounded shadow-sm preview-image" alt="">
